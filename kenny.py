@@ -1,5 +1,22 @@
 from difflib import SequenceMatcher
+import csv
 
+#CSV FILE
+# Initialize an empty list to store the rows
+arr = []
+
+# Open and read the CSV file
+with open('song_name.csv', mode='r') as file:
+    csv_reader = csv.reader(file)
+    
+    # Iterate over the rows in the CSV file
+    for row in csv_reader:
+        for element in row:
+            arr.append(element)
+           
+
+
+#CSV FILE END
 def is_close_match(target, candidate, min_consecutive=4):
     """Check if there are at least `min_consecutive` letters in sequence that match."""
     # Ensure both strings are at least min_consecutive in length
@@ -28,12 +45,14 @@ def binary_search_closest(arr, target):
         mid = left + (right - left) // 2
         
         # Print the current half of the array being searched
-        if iteration == 1:
-            print(f"Iteration {iteration}: First search range: {arr[left:right+1]}")
+        if iteration in range(1,5):
+            print(len(arr[left:mid]))
+            iteration += 1
         else:
-            print(f"Iteration {iteration}: Current search range: {arr[left:right+1]}")
-        iteration += 1
+            print(f"Iteration {iteration}: First half of current search range: {arr[left:mid+1]}")
+            iteration += 1
         
+    
         # Convert the current middle element to lowercase for comparison
         mid_element_lower = arr[mid].lower()
         
@@ -59,7 +78,7 @@ def binary_search_closest(arr, target):
     return closest_match
 
 # Example usage
-arr = sorted(["Angel Jambo", "Lexine", "Maria", "Joanna", "Anna", "Alex", "Janna", "Mia", "Jennefer", "Chelsea", "Mariel", "Jinjher", "Licelle", "Dion"])
+
 target = input("Enter name: ")  # Misspelled target
 
 closest_match = binary_search_closest(arr, target)
