@@ -6,6 +6,9 @@ def is_close_match(target, candidate, min_consecutive=4):
     if len(target) < min_consecutive or len(candidate) < min_consecutive:
         return False
     
+    # Convert both strings to lowercase to ignore case sensitivity
+    target, candidate = target.lower(), candidate.lower()
+    
     # Iterate over target and see if a substring of length min_consecutive exists in the candidate
     for i in range(len(target) - min_consecutive + 1):
         if target[i:i + min_consecutive] in candidate:
@@ -17,27 +20,33 @@ def binary_search_closest(arr, target):
     closest_match = None
     highest_similarity = 0.0
     
+    # Convert the target to lowercase for case-insensitive comparison
+    target_lower = target.lower()
+    
     while left <= right:
         mid = left + (right - left) // 2
         
         # Print the current half of the array being searched
         print("Current search range:", arr[left:right + 1])
         
-        # Calculate similarity using SequenceMatcher
-        similarity = SequenceMatcher(None, target, arr[mid]).ratio()
+        # Convert the current middle element to lowercase for comparison
+        mid_element_lower = arr[mid].lower()
+        
+        # Calculate similarity using SequenceMatcher on lowercase strings
+        similarity = SequenceMatcher(None, target_lower, mid_element_lower).ratio()
         
         # If the current word is a close match based on our custom check
-        if is_close_match(target, arr[mid]):
+        if is_close_match(target_lower, mid_element_lower):
             if similarity > highest_similarity:
                 highest_similarity = similarity
-                closest_match = arr[mid]
+                closest_match = arr[mid]  # Store the original case
         
         # Exact match found
-        if arr[mid] == target:
-            return arr[mid]
+        if mid_element_lower == target_lower:
+            return arr[mid]  # Return the original case
         
-        # Move left or right based on lexicographical order
-        elif arr[mid] < target:
+        # Move left or right based on lexicographical order (ignoring case)
+        elif mid_element_lower < target_lower:
             left = mid + 1
         else:
             right = mid - 1
