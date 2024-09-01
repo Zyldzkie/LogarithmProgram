@@ -59,7 +59,7 @@ def binary_search_closest(arr, target):
     return closest_match
 
 # Example usage
-arr = sorted(["Angel", "Lexine", "Maria", "Joanna", "Anna", "Alex", "Janna", "Mia", "Jennefer", "Chelsea", "Mariel", "Jinjher", "Licelle", "Dion"])
+arr = sorted(["Angel Jambo", "Lexine", "Maria", "Joanna", "Anna", "Alex", "Janna", "Mia", "Jennefer", "Chelsea", "Mariel", "Jinjher", "Licelle", "Dion"])
 target = input("Enter name: ")  # Misspelled target
 
 closest_match = binary_search_closest(arr, target)
