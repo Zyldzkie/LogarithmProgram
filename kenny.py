@@ -45,9 +45,14 @@ def binary_search_closest(arr, target):
         mid = left + (right - left) // 2
         
         # Print the current half of the array being searched
-        print(f"Iteration {iteration}: First half of current search range: {arr[left:mid+1]}")
-        iteration += 1
+        if iteration in range(1,5):
+            print(len(arr[left:mid]))
+            iteration += 1
+        else:
+            print(f"Iteration {iteration}: First half of current search range: {arr[left:mid+1]}")
+            iteration += 1
         
+    
         # Convert the current middle element to lowercase for comparison
         mid_element_lower = arr[mid].lower()
         
