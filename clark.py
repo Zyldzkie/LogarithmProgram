@@ -29,10 +29,11 @@ def binary_search_closest(arr, target):
         mid = left + (right - left) // 2
         
         # Print the current half of the array being searched
-        if iteration >= 5:
-            if iteration == 5:
-                print(f"Number of Songs: {len(arr)}")
+        if iteration >= 1:
+            if iteration == 6:
                 print(f"Iteration {iteration}: First search range: {arr[left:right+1]}")
+            elif iteration < 6:
+                print(f"Iteration {iteration}: Number of Songs: {len(arr[left:right+1])}")
             else:
                 print(f"Iteration {iteration}: Current search range: {arr[left:right+1]}")
         iteration += 1
