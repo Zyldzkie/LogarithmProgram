@@ -13,7 +13,7 @@ with open('song_name.csv', mode='r') as file:
     for row in csv_reader:
         for element in row:
             arr.append(element)
-            print(element)
+           
 
 
 #CSV FILE END
