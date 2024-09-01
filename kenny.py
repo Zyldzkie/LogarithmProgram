@@ -19,6 +19,7 @@ def binary_search_closest(arr, target):
     left, right = 0, len(arr) - 1
     closest_match = None
     highest_similarity = 0.0
+    iteration = 1
     
     # Convert the target to lowercase for case-insensitive comparison
     target_lower = target.lower()
@@ -27,7 +28,8 @@ def binary_search_closest(arr, target):
         mid = left + (right - left) // 2
         
         # Print the current half of the array being searched
-        print("Current search range:", arr[left:right + 1])
+        print(f"Iteration {iteration}: First half of current search range: {arr[left:mid+1]}")
+        iteration += 1
         
         # Convert the current middle element to lowercase for comparison
         mid_element_lower = arr[mid].lower()
